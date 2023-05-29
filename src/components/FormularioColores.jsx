@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, FormControl, FormLabel } from 'react-bootstrap';
 import { Card, Button } from 'react-bootstrap';
+
 
 const FormularioColores = () => {
 
     const [nombreColor, setNombreColor] = useState("");
-    const [codigoColor, setCodigoColor] = useState("");
+    const [codigoColor, setCodigoColor] = useState("#000");
+    const [colores, setcolores] = useState([]);
 
-    const handleSubmit =  () => {
-        
+    useEffect(() => {
+        const colorBox = document.querySelector('.colorBox');
+        if (colorBox) {
+          colorBox.style.backgroundColor = codigoColor;
+        }
+    }, [codigoColor]);
+
+    const handleSubmit =  (e) => {
+        e.preventDefault();
+
+        const color = { nombreColor, codigoColor };
+        setcolores([...colores, color]);
     }
 
     return (
@@ -16,7 +28,7 @@ const FormularioColores = () => {
             <Card>
                 <Card.Header as="h5">Gestionar colores</Card.Header>
                 <Card.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <div className='d-flex align-items-center justify-content-around'>
                             <div className='colorBox rounded'></div>
                             <div>
