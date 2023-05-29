@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Form, FormControl, FormLabel } from 'react-bootstrap';
 import { Card, Button } from 'react-bootstrap';
+import ListaColores from './ListaColores';
 
 
 const FormularioColores = () => {
@@ -45,6 +46,8 @@ const FormularioColores = () => {
                     </Form>
                 </Card.Body>
             </Card>
+            <hr className="text-light mt-4" />
+            <ListaColores colores={colores}></ListaColores>
         </div>
     );
 };
