@@ -20,7 +20,7 @@ const FormularioColores = () => {
     }
 
     return (
-        <div className='container'>
+        <div className='container mt-5'>
             <Card>
                 <Card.Header as="h5">Gestionar colores</Card.Header>
                 <Card.Body>
