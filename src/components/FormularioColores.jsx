@@ -26,7 +26,6 @@ const FormularioColores = () => {
                 <Card.Body>
                     <Form onSubmit={handleSubmit}>
                         <div className='d-flex align-items-center justify-content-around'>
-                            {/* <div className='colorBox rounded'></div> */}
                             <CajaColor codigoColor={codigoColor}></CajaColor>
                             <div>
                                 <div className='d-flex justify-content-center align-items-center my-3'>

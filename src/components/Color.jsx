@@ -7,7 +7,6 @@ const Color = ({color}) => {
             <Card.Header as="h5">{color.nombreColor}</Card.Header>
             <div className='mx-auto'>
                 <CajaColor codigoColor={color.codigoColor}></CajaColor>
-                {/* <div className='colorBox rounded my-3'></div> */}
                 <p>{color.codigoColor}</p>
             </div>
         </Card>
