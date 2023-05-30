@@ -6,7 +6,6 @@ function App() {
 
   return (
     <>
-      <h1>proyecto react</h1>
       <FormularioColores></FormularioColores>
     </>
   )
