@@ -21,7 +21,7 @@ const FormularioColores = () => {
 
     return (
         <div className='container mt-5'>
-            <Card>
+            <Card className='bg-dark text-light'>
                 <Card.Header as="h5">Gestionar colores</Card.Header>
                 <Card.Body>
                     <Form onSubmit={handleSubmit}>

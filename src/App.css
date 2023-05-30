@@ -1,5 +1,15 @@
-.colorBox {
-    width: 200px;
-    height: 200px;
-    background-color: coral;
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(27, 47, 47);
+    box-sizing: border-box;
+}
+  
+.main {
+    flex-grow: 1;
+}
+
+input {
+    background-color: rgb(27, 47, 47);
 }
