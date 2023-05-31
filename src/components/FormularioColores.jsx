@@ -9,7 +9,14 @@ const FormularioColores = () => {
 
     const [nombreColor, setNombreColor] = useState("");
     const [codigoColor, setCodigoColor] = useState("#000");
-    const [colores, setcolores] = useState([]);
+    const [colores, setcolores] = useState(JSON.parse(localStorage.getItem("colores")) || []);
+
+    useEffect(() => {
+        localStorage.setItem("colores", JSON.stringify(colores));
+    }, [colores]);
+
+    
+    
 
     const handleSubmit =  (e) => {
         e.preventDefault();
