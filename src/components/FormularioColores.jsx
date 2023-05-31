@@ -9,20 +9,22 @@ const FormularioColores = () => {
 
     const [nombreColor, setNombreColor] = useState("");
     const [codigoColor, setCodigoColor] = useState("#000");
-    const [colores, setcolores] = useState(JSON.parse(localStorage.getItem("colores")) || []);
+    const [colores, setColores] = useState(JSON.parse(localStorage.getItem("colores")) || []);
 
     useEffect(() => {
         localStorage.setItem("colores", JSON.stringify(colores));
     }, [colores]);
 
-    
-    
+    const borrarColor = (colorABorrar) => {
+        const nuevaListaColores = colores.filter((color) => color.nombreColor !== colorABorrar.nombreColor);
+        setColores(nuevaListaColores);
+    }
 
     const handleSubmit =  (e) => {
         e.preventDefault();
 
         const color = { nombreColor, codigoColor };
-        setcolores([...colores, color]);
+        setColores([...colores, color]);
         setNombreColor("");
     }
 
@@ -49,7 +51,7 @@ const FormularioColores = () => {
                 </Card.Body>
             </Card>
             <hr className="text-light mt-4" />
-            <ListaColores colores={colores}></ListaColores>
+            <ListaColores colores={colores} borrarColor={borrarColor}></ListaColores>
         </div>
     );
 };
