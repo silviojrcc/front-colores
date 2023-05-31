@@ -1,4 +1,4 @@
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import CajaColor from './CajaColor';
 
 const Color = ({color}) => {
@@ -7,8 +7,11 @@ const Color = ({color}) => {
             <Card.Header as="h5">{color.nombreColor}</Card.Header>
             <div className='mx-auto'>
                 <CajaColor codigoColor={color.codigoColor}></CajaColor>
-                <p>{color.codigoColor}</p>
             </div>
+            <Card.Footer className='d-flex align-items-baseline justify-content-between'>
+                <p>{color.codigoColor}</p>
+                <Button variant='danger'>Borrar</Button>
+            </Card.Footer>
         </Card>
     );
 };
