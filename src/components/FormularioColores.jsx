@@ -3,30 +3,41 @@ import { Form, FormControl, FormLabel } from 'react-bootstrap';
 import { Card, Button } from 'react-bootstrap';
 import ListaColores from './ListaColores';
 import CajaColor from './CajaColor';
+import { crearColor, obtenerColores } from './helpers/queries';
+import Swal from 'sweetalert2';
 
 
 const FormularioColores = () => {
 
     const [nombreColor, setNombreColor] = useState("");
     const [codigoColor, setCodigoColor] = useState("#000");
-    const [colores, setColores] = useState(JSON.parse(localStorage.getItem("colores")) || []);
+    const [colores, setColores] = useState([]);
 
     useEffect(() => {
-        localStorage.setItem("colores", JSON.stringify(colores));
-    }, [colores]);
-
-    const borrarColor = (colorABorrar) => {
-        const nuevaListaColores = colores.filter((color) => color.nombreColor !== colorABorrar.nombreColor);
-        setColores(nuevaListaColores);
-    }
+        obtenerColores().then((respuesta) => {
+            if (respuesta) {
+                console.log(respuesta);
+                setColores(respuesta);
+            } else {
+                setColores([]);
+            }
+        });
+    }, [])
 
     const handleSubmit =  (e) => {
         e.preventDefault();
 
         const color = { nombreColor, codigoColor };
-        setColores([...colores, color]);
-        setNombreColor("");
-    }
+        crearColor(color).then((respuesta) => {
+            if (respuesta && respuesta.status === 201) {
+                Swal.fire("Color creado", `El color ${color.nombreColor} se ha creado correctamente`, "success");
+                setNombreColor("");
+                setColores([...colores, color]);
+            } else {
+                Swal.fire("Error", `El color ${color.nombrecolor} no se ha creado correctamente`, "error");
+            }
+        });
+    };
 
     return (
         <div className='container mt-5'>
@@ -51,7 +62,7 @@ const FormularioColores = () => {
                 </Card.Body>
             </Card>
             <hr className="text-light mt-4" />
-            <ListaColores colores={colores} borrarColor={borrarColor}></ListaColores>
+            <ListaColores colores={colores} setColores={setColores}></ListaColores>
         </div>
     );
 };
